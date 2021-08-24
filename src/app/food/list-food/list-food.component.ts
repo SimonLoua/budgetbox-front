@@ -14,28 +14,26 @@ export class ListFoodComponent implements OnInit {
   displayedColumns: string[] = ['name', 'scientificName', 'mainGroup', 'subCategory', 'actions'];
   dataSource = new MatTableDataSource<Food>([]);
   length: number;
-  page = 0  ;
-  size = 10;
+  pageNumber = 0;
+  pageSize = 10;
   @ViewChild(MatPaginator, {static: false, read: true})  paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   pageEvent: PageEvent;
   constructor(private listFoodService: ListFoodService) { }
 
   ngOnInit(): void {
-    this.getFoods();
+    this.getFoods(this.pageNumber, this.pageSize);
   }
 
-  getFoods(): void {
-    this.listFoodService.getFoods().subscribe(
+  getFoods(pageNumber: number, pageSize: number): void {
+    this.listFoodService.getFoods(pageNumber, pageSize).subscribe(
       data => {
-        this.dataSource = new MatTableDataSource(data);
-        console.log('data : ', data);
-        console.log('data name : ', data[0].name);
+        this.dataSource = new MatTableDataSource(data.content);
         this.paginator = this.dataSource.paginator;
         this.dataSource.sort = this.sort;
-        this.length = data.size;
-        this.page = 1;
-        this.size = this.size;
+        this.length = data.totalElements;
+        this.pageNumber = data.pageable.pageNumber;
+        this.pageSize = data.pageable.pageSize;
       },
       (error: any) => {
         console.log('error occured during getFoods call ');
@@ -49,11 +47,23 @@ export class ListFoodComponent implements OnInit {
   }
 
   researchFood(name: string): void {
-
+    this.listFoodService.searchFood(name, 0, this.pageSize).subscribe(
+      data => {
+        this.dataSource = data.content;
+        this.paginator = this.dataSource.paginator;
+        this.dataSource.sort = this.sort;
+        this.length = data.totalElements;
+        this.pageNumber = data.pageable.pageNumber;
+        this.pageSize = data.pageable.pageSize;
+      },
+      (error: any) => {
+        console.log(error.error.message);
+      }
+    );
   }
 
   paginateTo(event?: PageEvent): PageEvent {
-    this.getFoods();
+    this.getFoods(event.pageIndex, event.pageSize);
     return event;
   }
 

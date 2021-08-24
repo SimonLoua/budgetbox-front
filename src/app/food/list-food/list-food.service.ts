@@ -12,26 +12,13 @@ const httpOptions = {
 })
 export class ListFoodService {
   constructor(private httpClient: HttpClient) {}
-  // getFoods(page: number, size: number) {
-  //   return this.httpClient.get(ApiEndpoints.apiGetFood + '?pageNumber=' + page + '&size=' + size);
-  // }
-  getFoods(): any {
-    return this.httpClient.get(ApiEndpoints.apiGetFood, httpOptions);
-      // .pipe(tap((resultat) => console.log('Résultat de la requête : ', resultat)),
-      //   catchError(this.handleError));
+
+  getFoods(pageNumber: number, pageSize: number): any {
+    const url: string = ApiEndpoints.apiGetFoods + '?pageNumber=' + pageNumber + '&pageSize=' + pageSize;
+    return this.httpClient.get(url, httpOptions);
   }
-
-  // handleError(error) {
-  //   let errorMessage = '';
-  //   if (error.error instanceof ErrorEvent) {
-  //     // client-side error
-  //     errorMessage = `Error: ${error.error.message}`;
-  //   } else {
-  //     // server-side error
-  //     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-  //   }
-  //   console.log(errorMessage);
-  //   return throwError(errorMessage);
-  // }
-
+  searchFood(name: string, pageNumber: number, pageSize: number): any {
+    const url: string = ApiEndpoints.apiSearchFood + '?name=' + name + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize;
+    return this.httpClient.get(url, httpOptions);
+  }
 }
