@@ -1,3 +1,13 @@
+
+# Installation/Execution Rapide
+
+Installer les librairies "npm install"
+
+Lancer le serveur "ng serve"
+
+Se connecter à l'url http://localhost:4200
+
+
 # FrontBudgetbox
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
