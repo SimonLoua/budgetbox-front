@@ -66,7 +66,7 @@ export class UpdateFoodComponent implements OnInit {
         this.checkForm();
       },
       (error: any) => {
-        console.log(error.error.message);
+        console.log(error);
       }
     );
   }
@@ -80,11 +80,8 @@ export class UpdateFoodComponent implements OnInit {
   }
 
   saveForm(): void {
-    console.log('this.saveForm()');
-    console.log('food :', this.foodForm.value);
     this.foodService.update(this.foodForm.value).subscribe(
       res => {
-        console.log('res : ', res);
         if (res && res.id > 0) {
           this.openSnackBar('Aliment modifié', 'Fermer');
           this.router.navigate(['food/list']);

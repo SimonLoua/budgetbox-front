@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import {FoodService} from '../service/food.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
@@ -40,7 +39,7 @@ export class ListFoodComponent implements OnInit {
       },
       (error: any) => {
         console.log('error occured during getFoods call');
-        console.log('message error : ', error.message);
+        console.log('error : ', error);
       }
     );
   }
@@ -58,7 +57,7 @@ export class ListFoodComponent implements OnInit {
       (error: any) => {
         this.openSnackBar('Suppression échouée', 'Fermer');
         console.log('error occured during deleteFood call');
-        console.log('message error : ', error.message);
+        console.log('error : ', error);
       }
     );
   }
@@ -74,7 +73,7 @@ export class ListFoodComponent implements OnInit {
         this.pageSize = data.pageable.pageSize;
       },
       (error: any) => {
-        console.log(error.error.message);
+        console.log(error);
       }
     );
   }
