@@ -6,5 +6,5 @@ export const ApiEndpoints = {
   apiSearchFood:     Environment.api.url + '/food/search',
   apiPostFood:     Environment.api.url + '/food/save',
   apiPutFood:     Environment.api.url + '/food/update',
-  apiDeleteFood:     Environment.api.url + '/delete',
+  apiDeleteFood:     Environment.api.url + '/food',
 };

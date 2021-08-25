@@ -29,6 +29,12 @@ export class FoodService {
     return this.httpClient.put(ApiEndpoints.apiPutFood, food, httpOptions);
   }
 
+  delete(id: number): any {
+    const url: string = ApiEndpoints.apiDeleteFood + '/' + id;
+    return this.httpClient.delete(url, httpOptions);
+  }
+
+  // No code is complete without a useless TODO commentary that will never be solved
   save(food: Food): any {
     return this.httpClient.post(ApiEndpoints.apiPostFood, food, httpOptions);
   }
