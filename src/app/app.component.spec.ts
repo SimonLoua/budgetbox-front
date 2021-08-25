@@ -19,7 +19,6 @@ describe('AppComponent', () => {
   it(`should have as title 'front-budgetbox'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('front-budgetbox');
   });
 
   it('should render title', () => {

@@ -1,1 +1,36 @@
-<p>modifier-food works!</p>
+<mat-toolbar class="sidenav-content-toolbar" color="primary">
+  <span class="title-center">Modification d'adhérent</span>
+</mat-toolbar>
+<form [formGroup]="foodForm" (ngSubmit)="submitForm()">
+      <ul>
+        <li class="mat-form-field--inline">
+          <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input matInput placeholder="Nom" formControlName="name" [value]="food?.name" (change)="checkForm()" />
+            <mat-error *ngIf="foodForm.controls['name'].invalid"> {{getErrotMsgName()}} </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Nom Scientifique</mat-label>
+            <input matInput placeholder="Nom Scientifique" formControlName="scientificName" [value]="food?.scientificName"/>
+            <mat-error *ngIf="foodForm.controls['scientificName'].invalid"> {{getErrotMsgScientificName()}} </mat-error>
+          </mat-form-field>
+        </li>
+        <li class="mat-form-field--inline">
+          <mat-form-field appearance="outline">
+            <mat-label>Catégorie Principale</mat-label>
+            <input matInput placeholder="Catégorie Principale" formControlName="mainGroup" [value]="food?.mainGroup" (change)="checkForm()"/>
+            <mat-error *ngIf="foodForm.controls['mainGroup'].invalid"> {{getErrotMsgMainGroup()}} </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Sous Catégorie</mat-label>
+            <input matInput placeholder="Sous Catégorie" formControlName="subGroup" [value]="food?.subGroup"
+                   (change)="checkForm()"/>
+            <mat-error *ngIf="foodForm.controls['subGroup'].invalid"> {{getErrotMsgSubGroup()}} </mat-error>
+          </mat-form-field>
+        </li>
+      </ul>
+  <div class="right-button">
+    <button mat-raised-button color="success" type="submit">Enregistrer</button>
+    <button mat-raised-button color="warn" type="button" (click)="reset()">Annuler</button>
+  </div>
+</form>

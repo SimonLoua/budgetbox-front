@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { ApiEndpoints } from '../../api/apiEndpoints';
+import {Food} from '../food.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
@@ -8,9 +9,13 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ListFoodService {
+export class FoodService {
   constructor(private httpClient: HttpClient) {}
 
+  getFood(id: number): any {
+    const url: string = ApiEndpoints.apiGetFood + '/' + id;
+    return this.httpClient.get(url, httpOptions);
+  }
   getFoods(pageNumber: number, pageSize: number): any {
     const url: string = ApiEndpoints.apiGetFoods + '?pageNumber=' + pageNumber + '&pageSize=' + pageSize;
     return this.httpClient.get(url, httpOptions);
@@ -18,5 +23,13 @@ export class ListFoodService {
   searchFood(name: string, pageNumber: number, pageSize: number): any {
     const url: string = ApiEndpoints.apiSearchFood + '?name=' + name + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize;
     return this.httpClient.get(url, httpOptions);
+  }
+
+  update(food: Food): any {
+    return this.httpClient.put(ApiEndpoints.apiPutFood, food, httpOptions);
+  }
+
+  save(food: Food): any {
+    return this.httpClient.post(ApiEndpoints.apiPostFood, food, httpOptions);
   }
 }

@@ -6,9 +6,12 @@ import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../material.module';
 import {RouterModule} from '@angular/router';
+import {FoodComponent} from './food/food.component';
+import {FoodRoutingModule} from './food-routing.module';
 
 @NgModule({
   declarations: [
+    FoodComponent,
     UpdateFoodComponent,
     ListFoodComponent
   ],
@@ -18,13 +21,13 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     MaterialModule,
     RouterModule,
+    FoodRoutingModule
   ],
   exports: [
+    FoodComponent,
     ListFoodComponent,
+    UpdateFoodComponent,
   ],
   providers: []
 })
-export class FoodModule {
-  constructor() {
-  }
-}
+export class FoodModule {}

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpdateFoodComponent } from './modifier-food.component';
+import { UpdateFoodComponent } from './update-food.component';
 
-describe('ModifierFoodComponent', () => {
+describe('UpdateFoodComponent', () => {
   let component: UpdateFoodComponent;
   let fixture: ComponentFixture<UpdateFoodComponent>;
 

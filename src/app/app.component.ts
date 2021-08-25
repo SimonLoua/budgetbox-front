@@ -13,6 +13,6 @@ export class AppComponent implements OnInit {
     this.navigateToDefaultPage();
   }
   navigateToDefaultPage(): void {
-    this.router.navigate(['foodtest']);
+    this.router.navigate(['food/list']);
   }
 }

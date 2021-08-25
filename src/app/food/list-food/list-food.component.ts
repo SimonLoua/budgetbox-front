@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import {ListFoodService} from './list-food.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
@@ -19,7 +20,8 @@ export class ListFoodComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false, read: true})  paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   pageEvent: PageEvent;
-  constructor(private listFoodService: ListFoodService) { }
+  constructor(private listFoodService: ListFoodService
+  ) { }
 
   ngOnInit(): void {
     this.getFoods(this.pageNumber, this.pageSize);
@@ -40,7 +42,7 @@ export class ListFoodComponent implements OnInit {
         console.log('message error : ', error.message);
       }
     );
-  };
+  }
 
   deleteFood(id: number): void {
 
